@@ -1,0 +1,122 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 6rem;
+}
+
+.navbar-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navbar_logo_container {
+    margin-right: 2rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    background: linear-gradient(89.97deg, #67F1FA 1.84%, #5778EB 102.67%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar_links_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar_links_container p, .signup p, .navbar-menu_container-links p, .signup-menu p{
+    color: #fff;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: capitalize;
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.signup button {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: #C584F5;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.navbar-menu {
+    margin-left: 1rem;
+    display: none;
+    position: relative;
+}
+
+.navbar-menu_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: end;
+    background: #67F1FA;
+    padding: 2rem;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    margin-top: 1rem;
+    min-width: 210px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0,0, 0,0.2);
+}
+
+.navbar-menu_container p {
+    margin: 1rem 0;
+}
+
+.signup-menu {
+    display: none;
+}
+
+
+@media screen and (max-width: 700px) {
+    .navbar_links_container {
+        display: none;
+    }
+    .navbar-menu {
+        display: flex;
+    }
+    .navbar {
+        padding: 2rem 4rem;
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    .navbar {
+        padding: 2rem;
+    }
+
+    .signup {
+        display: none;
+    }
+
+    .navbar-menu_container {
+        top: 20px;
+    }
+
+    .signup-menu {
+        display: block;
+    }
+}
