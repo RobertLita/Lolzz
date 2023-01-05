@@ -4,11 +4,23 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/Home';
+import History from './pages/History';
+import RootPage from './pages/RootPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <RootPage />,
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: '/history',
+        element: <History />
+      }
+    ]
   },
 ]);
 
@@ -18,5 +30,4 @@ const App: React.FC = () => {
   );
 }
 
-// {}
 export default App;

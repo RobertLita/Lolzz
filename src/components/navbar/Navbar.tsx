@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import './navbar.css';
+import {Link} from "react-router-dom"
 
 const Navbar: React.FC = () => {
 
@@ -9,13 +10,13 @@ const Navbar: React.FC = () => {
   return (
     <div className='navbar'>
       <div className='navbar_logo_container'>
-          <p className='logo'><a href="#">Lolzz</a></p>
+          <p className='logo'><Link to="/">Lolzz</Link></p>
       </div>
       <div className='navbar_links'>
         <div className="navbar_links_container">
-          <p><a href="#">Search</a></p>
-          <p><a href="#">??</a></p>
-          <p><a href="#">Register</a></p>
+          <p><Link to="/history">Search</Link></p>
+          <p><Link to="/history">??</Link></p>
+          <p><Link to="/history">Register</Link></p>
         </div>
       </div>
       <div className='signup'>
@@ -30,9 +31,9 @@ const Navbar: React.FC = () => {
         {toggleMenu && (
         <div className="navbar-menu_container scale-up-center">
           <div className="navbar-menu_container-links">
-            <p><a href="#">Search</a></p>
-            <p><a href="#">??</a></p>
-            <p><a href="#">Register</a></p>
+            <p><Link to="/history">Search</Link></p>
+            <p><Link to="/history">??</Link></p>
+            <p><Link to="/history">Register</Link></p>
           </div>
           <div className="signup-menu">
             <button type="button">Sign up</button>
