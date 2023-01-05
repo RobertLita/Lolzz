@@ -1,16 +1,22 @@
 import React from 'react';
-import './App.css';
-import Hero from './components/hero/Hero';
-import Navbar from './components/navbar/Navbar';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './pages/Home';
 
-const App = () => {
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+]);
+
+const App: React.FC = () => {
   return (
-    <div className='App gradient_bg'>
-      <Navbar />
-      <Hero />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
-
+// {}
 export default App;
