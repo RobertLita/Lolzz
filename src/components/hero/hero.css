@@ -37,28 +37,6 @@
     text-transform: uppercase;
 }
 
-.search_button {
-    margin-top: 20px;
-    color: #fff;
-    padding: 0.2rem 2rem;
-    background: linear-gradient(101.61deg, #84EEF5 -14.72%, #C584F5 66.97%);
-    border-radius: 15px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 42px;
-    letter-spacing: 0.1em;
-    text-align: center;
-    text-transform: capitalize;
-    cursor: pointer;
-}
-
-/* .right {
-    height: 100%;
-    width: 100%;
-} */
-
 .right img {
     float: right;
     aspect-ratio: 817/631;
