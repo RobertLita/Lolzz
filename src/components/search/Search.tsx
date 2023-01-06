@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { Input, NativeSelect, Button, Box } from '@mantine/core';
-
+import { getSummonerDetails } from '../../api/api.calls'; 
 
 const Search: React.FC = () => {
-    const [searchQuery, setSearchQuery] = useState('');
-    const [selectedRegion, setSelectedRegion] = useState('EUNE');
+    const [searchName, setSearchName] = useState('');
+    const [selectedRegion, setSelectedRegion] = useState('eun1');
 
-    const regions = ['EUNE', 'EUW', 'NA', 'KR', 'OCE']
+    const regions = ['eun1', 'euw1', 'na1', 'kr', 'oc1']
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(event.target.value);
+        setSearchName(event.target.value);
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Perform search here, using the searchQuery value
+        // Perform search here, using the searchName value
+        getSummonerDetails(searchName, selectedRegion).then((ob) => {
+            console.log(ob);
+        })
     };
 
     const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -31,9 +34,9 @@ const Search: React.FC = () => {
                 mt={50}>
                 <Input
                     className='text_input'
-                    placeholder="Search you summoner name..."
+                    placeholder="Enter you summoner name..."
                     variant="filled"
-                    value={searchQuery}
+                    value={searchName}
                     onChange={handleChange}
                     radius="md"
                     size="lg"
@@ -60,7 +63,8 @@ const Search: React.FC = () => {
                     w={{base: 100, sm: 150}}
                     h={{base: 40, sm: 50}}
                     fz={{base:15, sm: 18}}
-                    ff='Montserrat'>
+                    ff='Montserrat'
+                    type='submit'>
                     Search
                 </Button>
             </Box>

@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
         <div className="navbar_links_container">
           <p><Link to="/history">Search</Link></p>
           <p><Link to="/history">??</Link></p>
-          <p><Link to="/history">Register</Link></p>
+          <p><Link to="/history">Sign up</Link></p>
         </div>
       </div>
       <div className='signup'>
@@ -33,10 +33,10 @@ const Navbar: React.FC = () => {
           <div className="navbar-menu_container-links">
             <p><Link to="/history">Search</Link></p>
             <p><Link to="/history">??</Link></p>
-            <p><Link to="/history">Register</Link></p>
+            <p><Link to="/history">Sign up</Link></p>
           </div>
           <div className="signup-menu">
-            <button type="button">Sign up</button>
+            <button type="button">Login</button>
           </div>
         </div>
         )}
