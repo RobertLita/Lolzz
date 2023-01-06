@@ -25,12 +25,13 @@ const Hero: React.FC = () => {
                         root: {
                             width: 120,
                             height: 40,
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Montserrat',
                             fontWeight: 700,
                             fontSize: 15,
                             letterSpacing: 0.5,
                         }
                     })} 
+                    mt={30}
                     gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}>
                     Explore
                 </Button>

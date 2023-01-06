@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, NativeSelect, Button } from '@mantine/core';
+import { Input, NativeSelect, Button, Box } from '@mantine/core';
 
 
 const Search: React.FC = () => {
@@ -23,28 +23,47 @@ const Search: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="search-form">
-            <div className='inputs'>
+            <Box sx={() => ({
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            })}
+                mt={50}>
                 <Input
                     className='text_input'
-                    placeholder="Search you summoner name.."
+                    placeholder="Search you summoner name..."
                     variant="filled"
                     value={searchQuery}
                     onChange={handleChange}
                     radius="md"
                     size="lg"
-                    
+                    w={{ base: 250, sm: 400, lg: 600 }}
+                    py={{ base: 'xs', sm: 'md', lg: 'xl' }}
+                    mr={20}
                 />
                 <NativeSelect
                     data={regions}
                     value={selectedRegion}
                     onChange={handleRegionChange}
-                    radius="xl"
-
+                    radius="md"
+                    w={100}
+                    py={{ base: 'xs', sm: 'md', lg: 'xl' }}
                 />
-            </div>
-            <Button variant="gradient" gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}>
-                Search
-            </Button>
+            </Box>
+            <Box sx={() => ({
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            })}
+                mt={40}>
+                <Button variant="gradient" gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}
+                    w={{base: 100, sm: 150}}
+                    h={{base: 40, sm: 50}}
+                    fz={{base:15, sm: 18}}
+                    ff='Montserrat'>
+                    Search
+                </Button>
+            </Box>
         </form>
     );
 };
