@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Input, NativeSelect, Button, Box } from '@mantine/core';
-import { getSummonerDetails } from '../../api/api.calls'; 
+import { getSummonerHistory } from '../../api/api.calls'; 
+
 
 const Search: React.FC = () => {
     const [searchName, setSearchName] = useState('');
@@ -15,8 +16,8 @@ const Search: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Perform search here, using the searchName value
-        getSummonerDetails(searchName, selectedRegion).then((ob) => {
-            console.log(ob);
+        getSummonerHistory(searchName, selectedRegion).then((ob) => {
+            console.log(ob)
         })
     };
 

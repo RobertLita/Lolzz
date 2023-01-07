@@ -3,14 +3,15 @@ export interface SummonerDetails {
     id: string,
 }
 
-export interface Rank {
+export interface League {
     mode: string,
     division: string,
-    tier: number,
+    tier: string,
+    LP: number,
 }
 
 export interface Participant {
-    summonetName: string,
+    summonerName: string,
     champName: string,
     champLevel: number,
     kills: number,
@@ -25,10 +26,18 @@ export interface Objectives {
     noDragons: number,
     noTurrets: number,
     noInhibs: number,
+    noHeralds: number,
 }
 
 export interface Match {
+    gameMode: string,
     gameDuration: number,
-    participant: Participant[],
-    objectives: Objectives,
+    participants: Participant[],
+    objectives: Objectives[],
+    winnerTeam: number,
+}
+
+export interface Info {
+    leagues: League[],
+    matches: Match[]
 }
