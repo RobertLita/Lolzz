@@ -80,6 +80,7 @@ export async function getMatchDetails(matchId: string, region: string): Promise<
             p.champName = data['info']['participants'][i]['championName'];
             p.kills = data['info']['participants'][i]['kills'];
             p.deaths = data['info']['participants'][i]['deaths'];
+            p.minionsKilled = data['info']['participants'][i]['totalMinionsKilled']
             p.items = [
                 data['info']['participants'][i]['item0'], 
                 data['info']['participants'][i]['item1'], 

@@ -18,6 +18,7 @@ export interface Participant {
     deaths: number, 
     assists: number,
     items: string[],
+    minionsKilled: number,
     lane?: string
 }
 
