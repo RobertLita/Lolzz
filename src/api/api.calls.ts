@@ -63,52 +63,50 @@ export async function getMatchList(puuid: string, region: string, start: number)
 }
 
 
-export async function getMatchDetails(matchId: string, region: string): Promise<Match | string> {
+export async function getMatchDetails(summonerName:string, matchId: string, region: string): Promise<Match | string> {
     try {
         const matchDetails = `https://${regionMapping[region]}.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${api_key}`;
         const response = await fetch(matchDetails);
         const data = await response.json();
         const match: Match = {} as Match
-        const objectives: Objectives[] = []
-        const participants: Participant[] = [];
+        const objectives: Objectives = {} as Objectives
+        const p: Participant = {} as Participant;
+        let team: number = 0;
         
         for (let i = 0; i < 10; i++) {
-            let p: Participant = {} as Participant;
-            p.summonerName = data['info']['participants'][i]['summonerName'];
-            p.assists = data['info']['participants'][i]['assists'];
-            p.champLevel = data['info']['participants'][i]['champLevel'];
-            p.champName = data['info']['participants'][i]['championName'];
-            p.kills = data['info']['participants'][i]['kills'];
-            p.deaths = data['info']['participants'][i]['deaths'];
-            p.minionsKilled = data['info']['participants'][i]['totalMinionsKilled']
-            p.items = [
-                data['info']['participants'][i]['item0'], 
-                data['info']['participants'][i]['item1'], 
-                data['info']['participants'][i]['item2'],
-                data['info']['participants'][i]['item3'],
-                data['info']['participants'][i]['item4'],
-                data['info']['participants'][i]['item5'],
-                data['info']['participants'][i]['item6']
-            ]
-            p.lane = data['info']['participants'][i]['lane'];
-            participants.push(p);
-        }
+            if (data['info']['participants'][i]['summonerName'] === summonerName) {
+                p.summonerName = data['info']['participants'][i]['summonerName'];
+                p.assists = data['info']['participants'][i]['assists'];
+                p.champLevel = data['info']['participants'][i]['champLevel'];
+                p.champName = data['info']['participants'][i]['championName'];
+                p.kills = data['info']['participants'][i]['kills'];
+                p.deaths = data['info']['participants'][i]['deaths'];
+                p.minionsKilled = data['info']['participants'][i]['totalMinionsKilled']
+                p.items = [
+                    data['info']['participants'][i]['item0'], 
+                    data['info']['participants'][i]['item1'], 
+                    data['info']['participants'][i]['item2'],
+                    data['info']['participants'][i]['item3'],
+                    data['info']['participants'][i]['item4'],
+                    data['info']['participants'][i]['item5'],
+                    data['info']['participants'][i]['item6']
+                ]
+                p.lane = data['info']['participants'][i]['lane'];
+                team = Math.floor(i / 5);
 
-        for (let i = 0; i < 2; i++) {
-            let obj: Objectives = {} as Objectives;
-            obj.noBarons = data['info']['teams'][i]['objectives']['baron']['kills'];
-            obj.noDragons = data['info']['teams'][i]['objectives']['dragon']['kills'];
-            obj.noInhibs = data['info']['teams'][i]['objectives']['inhibitor']['kills'];
-            obj.noTurrets = data['info']['teams'][i]['objectives']['tower']['kills'];
-            obj.noHeralds = data['info']['teams'][i]['objectives']['riftHerald']['kills'];
-
-            objectives.push(obj);
+                break;
+            }
         }
+        console.log(team)
+        objectives.noBarons = data['info']['teams'][team]['objectives']['baron']['kills'];
+        objectives.noDragons = data['info']['teams'][team]['objectives']['dragon']['kills'];
+        objectives.noTurrets = data['info']['teams'][team]['objectives']['tower']['kills'];
+
         match.gameMode = data['info']['gameMode'];
         match.gameDuration = data['info']['gameDuration'];
-        match.participants = participants;
+        match.participant = p;
         match.objectives = objectives;
-        data['info']['teams'][0] === true ? match.winnerTeam = 0: match.winnerTeam = 1;
+        match.win = data['info']['teams'][team]['win'];
         
         return match
 
@@ -133,10 +131,11 @@ export async function getSummonerHistory(summonerName: string, region: string) :
     if (typeof matchIds === 'string') {
         return matchIds
     }
+    console.log(matchIds)
     
     let matchesDetails: Match[] = [];
     for (let i = 0; i < matchIds.length; i++) {
-        let match: Match | string = await getMatchDetails(matchIds[i], region) 
+        let match: Match | string = await getMatchDetails(summonerName, matchIds[i], region) 
         if (typeof match === 'string') 
             continue;
         matchesDetails.push(match);

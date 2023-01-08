@@ -26,16 +26,14 @@ export interface Objectives {
     noBarons: number,
     noDragons: number,
     noTurrets: number,
-    noInhibs: number,
-    noHeralds: number,
 }
 
 export interface Match {
     gameMode: string,
     gameDuration: number,
-    participants: Participant[],
-    objectives: Objectives[],
-    winnerTeam: number,
+    participant: Participant,
+    objectives: Objectives,
+    win: boolean,
 }
 
 export interface Info {
