@@ -8,7 +8,13 @@ const History: React.FC = () => {
   return (
     <>
       <Search />
-      <Box mt={20} ml = {20} mr = {20} display='flex' sx ={{justifyContent: 'space-evenly'}}>
+      <Box mt={20} ml={20} mr={20} display='flex' sx={{
+        justifyContent: 'space-evenly',
+        '@media screen and (max-width: 1201px)': {
+          flexDirection: 'column',
+          alignItems: 'center'
+        }
+      }}>
         <Leagues />
         <Match />
       </Box>

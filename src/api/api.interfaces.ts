@@ -19,7 +19,7 @@ export interface Participant {
     assists: number,
     items: string[],
     minionsKilled: number,
-    lane?: string
+    lane: string
 }
 
 export interface Objectives {
