@@ -141,7 +141,8 @@ export async function getSummonerHistory(summonerName: string, region: string) :
 
     let info: Info = {
         leagues : leagues,
-        matches : matchesDetails
+        matches : matchesDetails,
+        message : '' 
     }
 
     return info;

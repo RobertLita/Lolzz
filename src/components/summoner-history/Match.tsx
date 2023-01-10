@@ -33,7 +33,7 @@ const Match: React.FC<MatchProps> = ({ match }) => {
   const lane = match.participant.lane
 
   return (
-    <Box display='flex' bg={matchColor} mt={5} mb={5} w={{ sm: "100%", lg: "75%", xs: "100%", base: '100%'}} h={90} sx={{ borderRadius: 5, alignItems: 'center', justifyContent: 'space-evenly' }}>
+    <Box display='flex' bg={matchColor} mt={5} mb={5} w={{ sm: "100%", lg: "100%", xs: "100%", base: '100%'}} h={90} sx={{ borderRadius: 5, alignItems: 'center', justifyContent: 'space-evenly' }}>
       <Box display='flex' h='100%' w={100}
         sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
       >

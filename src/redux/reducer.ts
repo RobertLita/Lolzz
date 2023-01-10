@@ -9,10 +9,15 @@ interface ActionAddMatches {
   type: string;
   payload: Match[];
 }
+interface ActionAddMessage {
+  type: string;
+  payload: string;
+}
 
 const initialState: Info = {
   leagues: [],
-  matches: []
+  matches: [],
+  message: ''
 };
 
 const historySlice = createSlice({
@@ -25,14 +30,18 @@ const historySlice = createSlice({
     addMatches: (state, action: ActionAddMatches) => {
       state.matches = state.matches = [...state.matches, ...action.payload];
     },
+    addErrorMessage: (state, action: ActionAddMessage) => {
+      state.message = action.payload;
+    },
     reset: (state) => {
-      state.leagues = []
-      state.matches = []
+      state.leagues = [];
+      state.matches = [];
+      state.message = '';
     }
   }
 });
 
 
-export const { addLeagues, addMatches, reset } = historySlice.actions
+export const { addLeagues, addMatches, reset, addErrorMessage } = historySlice.actions
 
 export default historySlice.reducer

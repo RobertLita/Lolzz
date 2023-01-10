@@ -38,5 +38,6 @@ export interface Match {
 
 export interface Info {
     leagues: League[],
-    matches: Match[]
+    matches: Match[],
+    message: string
 }
