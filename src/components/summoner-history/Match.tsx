@@ -1,31 +1,39 @@
 import { Box, Text, Image } from '@mantine/core'
 import React from 'react'
+import { Match as MatchDetails} from '../../api/api.interfaces';
 
-const Match = () => {
-  const championName = 'Sylas'
+type MatchProps = {
+  match: MatchDetails;
+} 
+
+const Match: React.FC<MatchProps> = ({ match }) => {
+
+  const championName = match.participant.champName
   const championIconUrl = `http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${championName}.png`
-  const items = ['4633', '3089', '3158', '3115', '4637', '1026', '0']
+  const items = match.participant.items
   const itemsUrls = []
   for (let i = 0; i < 7; i++)
-    if (items[i] !== '0')
+    if (parseInt(items[i]) !== 0)
       itemsUrls.push(`http://ddragon.leagueoflegends.com/cdn/12.23.1/img/item/${items[i]}.png`)
     else
       itemsUrls.push('')
-  const kills = 12
-  const deaths = 6
-  const assists = 4
-  const minionKilled = 159
-  const win = true
-  const gameMode = 'Ranked Flex'
-  const gameDurationMin = Math.floor(1498 / 60)
-  const gameDurationSec = 1498 % 60
-  const dragonKills = 2
-  const baronKills = 1
-  const turretKills = 6
-  const lane = 'MIDDLE'
+
+  const kills = match.participant.kills
+  const deaths = match.participant.deaths
+  const assists = match.participant.assists
+  const minionKilled = match.participant.minionsKilled
+  let matchColor
+  match.win === true ? matchColor = '#22397c': matchColor='#53263e'
+  const gameMode = match.gameMode
+  const gameDurationMin = Math.floor(match.gameDuration / 60)
+  const gameDurationSec = match.gameDuration % 60
+  const dragonKills = match.objectives.noDragons
+  const baronKills = match.objectives.noBarons
+  const turretKills = match.objectives.noTurrets
+  const lane = match.participant.lane
 
   return (
-    <Box display='flex' bg='red' w={{ sm: "100%", lg: "75%", }} h={90} sx={{ borderRadius: 5, alignItems: 'center', justifyContent: 'space-evenly' }}>
+    <Box display='flex' bg={matchColor} mt={5} mb={5} w={{ sm: "100%", lg: "75%", xs: "100%", base: '100%'}} h={90} sx={{ borderRadius: 5, alignItems: 'center', justifyContent: 'space-evenly' }}>
       <Box display='flex' h='100%' w={100}
         sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
       >
@@ -33,7 +41,7 @@ const Match = () => {
           {gameMode}
         </Text>
         {
-          win === true ? (
+          match.win === true ? (
             <Text c='#fff' fz={{ lg: 'xl', md: 'xl', xs: 'md' }} sx={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
               Win
             </Text>
@@ -54,7 +62,6 @@ const Match = () => {
         display: 'flex', justifyContent: 'center', alignItems: 'center',
         '@media screen and (max-width: 735px)': {
           display: 'none',
-          w: '100%'
         }
       }} >
         {itemsUrls[0] !== '' ? (<Image src={itemsUrls[0]} alt='item0' width={30} height={30} ml={10} />) : (<></>)}
@@ -67,7 +74,7 @@ const Match = () => {
       </Box>
       <Box display='flex' ml={10} sx={{
         alignItems: 'center',
-        '@media screen and (max-width: 600px)': {
+        '@media screen and (max-width: 500px)': {
           display: 'none',
         }
       }}>

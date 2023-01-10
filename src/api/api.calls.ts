@@ -1,7 +1,7 @@
 import { Info, League, Match, Objectives, SummonerDetails } from "./api.interfaces";
 import { Participant } from "./api.interfaces";
 
-const api_key = "RGAPI-78d2b2bf-25bb-4b3c-b288-3e040ad41e2f";
+const api_key = "RGAPI-f4ffdf74-4c78-4087-bb6b-25e779d2efa6";
 const regionMapping: { [index: string]: string } = {
     eun1: 'europe',
     euw1: 'europe',
@@ -97,7 +97,6 @@ export async function getMatchDetails(summonerName:string, matchId: string, regi
                 break;
             }
         }
-        console.log(team)
         objectives.noBarons = data['info']['teams'][team]['objectives']['baron']['kills'];
         objectives.noDragons = data['info']['teams'][team]['objectives']['dragon']['kills'];
         objectives.noTurrets = data['info']['teams'][team]['objectives']['tower']['kills'];
@@ -131,7 +130,6 @@ export async function getSummonerHistory(summonerName: string, region: string) :
     if (typeof matchIds === 'string') {
         return matchIds
     }
-    console.log(matchIds)
     
     let matchesDetails: Match[] = [];
     for (let i = 0; i < matchIds.length; i++) {

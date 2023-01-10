@@ -2,9 +2,14 @@ import { Box } from '@mantine/core'
 import React from 'react'
 import Search from '../components/search/Search'
 import Leagues from '../components/summoner-history/Leagues'
+import { useSelector } from 'react-redux'
+import { Match as MatchDetails } from '../api/api.interfaces'
 import Match from '../components/summoner-history/Match'
 
 const History: React.FC = () => {
+
+  const history = useSelector((state: any) => state.history)
+
   return (
     <>
       <Search />
@@ -15,8 +20,19 @@ const History: React.FC = () => {
           alignItems: 'center'
         }
       }}>
-        <Leagues />
-        <Match />
+        {history.leagues.length !== 0 ? <Leagues leagues={history.leagues} /> : null}
+
+        {history.matches.length !== 0 ? (
+          <Box sx={{display:'flex', justifyContent:'center', flexDirection:'column', width: '100%', marginLeft: 10}}>
+          {history.matches.map((match: MatchDetails, index: number) => (
+            <Match key={index} match={match} />
+          ))
+        } 
+          </Box>
+        ) : null}
+
+
+
       </Box>
     </>
   )

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Input, NativeSelect, Button, Box } from '@mantine/core';
 import { getSummonerHistory } from '../../api/api.calls'; 
-
+import { useDispatch } from 'react-redux'
+import { addLeagues, addMatches, reset } from '../../redux/reducer';
 
 const Search: React.FC = () => {
+
     const [searchName, setSearchName] = useState('');
+    const [loading, setLoading] = useState(false);
     const [selectedRegion, setSelectedRegion] = useState('eun1');
+    const dispatch = useDispatch();
 
     const regions = ['eun1', 'euw1', 'na1', 'kr', 'oc1']
 
@@ -13,12 +17,23 @@ const Search: React.FC = () => {
         setSearchName(event.target.value);
     };
 
+    const handleLoading = () => {
+        
+    }
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Perform search here, using the searchName value
-        getSummonerHistory(searchName, selectedRegion).then((ob) => {
-            console.log(ob)
+        setLoading(true);
+        console.log(loading);
+        dispatch(reset());
+        getSummonerHistory(searchName, selectedRegion).then((data) => {
+            if (typeof data !== 'string') {
+                dispatch(addLeagues(data['leagues']))
+                dispatch(addMatches(data['matches']))
+            }
         })
+        setLoading(false);
+        console.log(loading);
     };
 
     const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -65,7 +80,8 @@ const Search: React.FC = () => {
                     h={{base: 40, sm: 50}}
                     fz={{base:15, sm: 18}}
                     ff='Montserrat'
-                    type='submit'>
+                    type='submit'
+                    loading={loading}>
                     Search
                 </Button>
             </Box>
