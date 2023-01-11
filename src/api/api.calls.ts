@@ -1,7 +1,8 @@
 import { Info, League, Match, Objectives, SummonerDetails } from "./api.interfaces";
 import { Participant } from "./api.interfaces";
 
-const api_key = "RGAPI-f4ffdf74-4c78-4087-bb6b-25e779d2efa6";
+const api_key = process.env.REACT_APP_API_KEY;
+
 const regionMapping: { [index: string]: string } = {
     eun1: 'europe',
     euw1: 'europe',
@@ -10,7 +11,7 @@ const regionMapping: { [index: string]: string } = {
     oc1: 'sea'
 };
 
-export async function getSummonerDetails(summonerName: string, region: string): Promise<SummonerDetails | string> {
+async function getSummonerDetails(summonerName: string, region: string): Promise<SummonerDetails | string> {
 
     try {
         const summonerEndpoint = `https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${api_key}`;
@@ -28,7 +29,7 @@ export async function getSummonerDetails(summonerName: string, region: string): 
 }
 
 
-export async function getLeagues(id: string, region: string): Promise<League[] | string> {
+async function getLeagues(id: string, region: string): Promise<League[] | string> {
     try {
         const leagueEndpoint = `https://${region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${api_key}`;
         const response = await fetch(leagueEndpoint);
@@ -50,7 +51,7 @@ export async function getLeagues(id: string, region: string): Promise<League[] |
     }
 }
 
-export async function getMatchList(puuid: string, region: string, start: number): Promise<string[] | string> {
+async function getMatchList(puuid: string, region: string, start: number): Promise<string[] | string> {
     try {
         const matchListEndpoint = `https://${regionMapping[region]}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=10&api_key=${api_key}`;
         const response = await fetch(matchListEndpoint);
@@ -63,7 +64,7 @@ export async function getMatchList(puuid: string, region: string, start: number)
 }
 
 
-export async function getMatchDetails(summonerName:string, matchId: string, region: string): Promise<Match | string> {
+async function getMatchDetails(summonerName:string, matchId: string, region: string): Promise<Match | string> {
     try {
         const matchDetails = `https://${regionMapping[region]}.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${api_key}`;
         const response = await fetch(matchDetails);

@@ -1,5 +1,5 @@
 import { Box, Image, Text } from "@mantine/core";
-import React, { useState } from "react";
+import React from "react";
 import { League } from "../../api/api.interfaces";
 
 type LeagueProps = {

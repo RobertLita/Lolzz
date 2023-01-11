@@ -23,7 +23,7 @@ const History: React.FC = () => {
       }}>
         {history.leagues.length !== 0 ? <Leagues leagues={history.leagues} /> : null}
 
-        {history.matches.length !== 0  && JSON.stringify(history.matches.participant) !== '{}' ? (
+        {history.matches.length !== 0  && JSON.stringify(history.matches[0].participant) !== '{}' ? (
           <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '100%', marginLeft: 10 }}>
             {history.matches.map((match: MatchDetails, index: number) => (
               <Match key={index} match={match} />
@@ -32,7 +32,8 @@ const History: React.FC = () => {
           </Box>
         ) : null}
 
-        {history.message !== '' || JSON.stringify(history.matches.participant) === '{}'? (<Text sx={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: 30, color: 'red' }}>{history.message}</Text>) : null}
+        {history.message !== '' ? (<Text sx={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: 30, color: 'red' }}>{history.message}</Text>) : null}
+        {history.matches.length > 0 && JSON.stringify(history.matches[0].participant) === '{}' ? (<Text sx={{ fontFamily: "Montserrat", fontWeight: 600, fontSize: 30, color: 'red' }}>Make sure your name and region are correct!</Text>) : null}
 
       </Box>
     </>

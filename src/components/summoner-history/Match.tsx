@@ -59,7 +59,7 @@ const Match: React.FC<MatchProps> = ({ match }) => {
       <Text ml={10} c='#fff' fz={{ lg: 'xl', md: 'xl', xs: 'md' }} sx={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 550 }}>{kills}/{deaths}/{assists}</Text>
       <Text ml={10} c='#fff' fz={{ lg: 'xl', md: 'xl', xs: 'md' }} sx={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 550 }}>{minionKilled}cs</Text>
       <Box sx={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center',
+        display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: 200,
         '@media screen and (max-width: 735px)': {
           display: 'none',
         }

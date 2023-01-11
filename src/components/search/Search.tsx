@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Input, NativeSelect, Button, Box } from '@mantine/core';
-import { getSummonerHistory } from '../../api/api.calls'; 
+import { getSummonerHistory } from '../../api/api.calls';
 import { useDispatch } from 'react-redux'
 import { addLeagues, addMatches, reset, addErrorMessage } from '../../redux/reducer';
 
@@ -17,26 +17,34 @@ const Search: React.FC = () => {
         setSearchName(event.target.value);
     };
 
+    const submitForm = useCallback(async () => {
+        dispatch(reset());
+        const data = await getSummonerHistory(searchName, selectedRegion);
+        if (typeof data !== 'string') {
+            dispatch(addLeagues(data['leagues']));
+            dispatch(addMatches(data['matches']));
+        } else {
+            dispatch(addErrorMessage(data));
+        }
+        setLoading(false);
+    }, [dispatch, searchName, selectedRegion]);
+
+
+    useEffect(() => {
+        if (loading === true) {
+            submitForm();
+        }
+    }, [loading, submitForm]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(reset());
+        };
+    }, [dispatch]);
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setLoading(true);
-        console.log(loading);
-        dispatch(reset());
-        getSummonerHistory(searchName, selectedRegion).then((data) => {
-            if (typeof data !== 'string') {
-                dispatch(addLeagues(data['leagues']));
-                dispatch(addMatches(data['matches']));
-            }
-            else {
-                dispatch(addErrorMessage(data));
-            }
-        })
-        setLoading(false);
-        console.log(loading);
-    };
-
-    const handleLoading = () => {
-        setLoading(()=>true);
     };
 
     const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -79,9 +87,9 @@ const Search: React.FC = () => {
             })}
                 mt={40}>
                 <Button variant="gradient" gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}
-                    w={{base: 100, sm: 150}}
-                    h={{base: 40, sm: 50}}
-                    fz={{base:15, sm: 18}}
+                    w={{ base: 100, sm: 150 }}
+                    h={{ base: 40, sm: 50 }}
+                    fz={{ base: 15, sm: 18 }}
                     ff='Montserrat'
                     type='submit'
                     loading={loading}>

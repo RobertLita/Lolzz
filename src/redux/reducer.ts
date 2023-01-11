@@ -28,7 +28,7 @@ const historySlice = createSlice({
       state.leagues = action.payload;
     },
     addMatches: (state, action: ActionAddMatches) => {
-      state.matches = state.matches = [...state.matches, ...action.payload];
+      state.matches = state.matches = action.payload;
     },
     addErrorMessage: (state, action: ActionAddMessage) => {
       state.message = action.payload;
