@@ -5,42 +5,64 @@
   scroll-behavior: smooth;
 }
 
-/* html, 
+html,
 body {
-    height: 100vh;
+  height: 100vh;
+}
+/* html {
+  height: 100%;
 } */
 
-/* #root {
+#root {
   height: 100%;
 }
 
-.f {
+/* .f {
   height: 100%;
 } */
 
 body {
   background-color: var(--color-bg);
-  background:-moz-radial-gradient(circle at 27% 34%, #002853 0%, rgba(4, 12, 24, 1) 54%);
+  background: -moz-radial-gradient(
+    circle at 27% 34%,
+    #002853 0%,
+    rgba(4, 12, 24, 1) 54%
+  );
 
   /* safari 5.1+,chrome 10+ */
-  background:-webkit-radial-gradient(circle at 27% 34%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 54%);
+  background: -webkit-radial-gradient(
+    circle at 27% 34%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(4, 12, 24, 1) 54%
+  );
 
   /* opera 11.10+ */
-  background:-o-radial-gradient(circle at 27% 34%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 54%);
+  background: -o-radial-gradient(
+    circle at 27% 34%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(4, 12, 24, 1) 54%
+  );
 
   /* ie 10+ */
-  background:-ms-radial-gradient(circle at 27% 34%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 54%);
+  background: -ms-radial-gradient(
+    circle at 27% 34%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(4, 12, 24, 1) 54%
+  );
 
   /* global 92%+ browsers support */
-  background:radial-gradient(circle at 27% 34%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 54%);
-  min-height: 100vh;
+  background: radial-gradient(
+    circle at 27% 34%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(4, 12, 24, 1) 54%
+  );
+  /* min-height: 100vh; */
 }
 
 a {
   color: unset;
   text-decoration: none;
 }
-
 
 .section_padding {
   padding: 4rem 6rem;
@@ -51,29 +73,30 @@ a {
 }
 
 .scale-up-center {
-	-webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 @-webkit-keyframes scale-up-center {
   0% {
     -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes scale-up-center {
   0% {
     -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -94,5 +117,5 @@ a {
 
   .section_margin {
     margin: 4rem 2rem;
-  }  
+  }
 }

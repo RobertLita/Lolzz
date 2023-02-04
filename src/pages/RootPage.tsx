@@ -1,6 +1,6 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Navbar from '../components/navbar/Navbar'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "../components/navbar/Navbar";
 
 const RootPage: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const RootPage: React.FC = () => {
       <Navbar />
       <Outlet />
     </>
-  )
-}
+  );
+};
 
-export default RootPage
+export default RootPage;
