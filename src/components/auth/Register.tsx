@@ -1,4 +1,5 @@
-import { Box, Input, Button, Alert } from "@mantine/core";
+import { Box, Input, Button, Alert, Text, Flex } from "@mantine/core";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -71,95 +72,105 @@ const Register = () => {
           {error}
         </Alert>
       )}
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          height: "calc(100% - 108px)",
-          display: "flex",
-          justifyContent: "space-evenly",
-          flexDirection: "column",
-        }}
+      <Flex
+        align="center"
+        h="calc(100% - 108px)"
+        direction="column"
+        justify="space-around"
       >
-        <Box
-          sx={() => ({
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            height: "70%",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "space-evenly",
             flexDirection: "column",
-          })}
-          h="50%"
+          }}
         >
-          <Input.Wrapper
-            label="Email"
-            required
-            labelProps={{ c: "#fff" }}
-            error={emailError}
+          <Box
+            sx={() => ({
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexDirection: "column",
+            })}
+            h="70%"
           >
-            <Input
-              variant="filled"
-              value={email}
-              onChange={handleEmailChange}
-              radius="md"
-              size="md"
-              type="email"
-              w={{ base: 240, sm: 400, lg: 600 }}
-            />
-          </Input.Wrapper>
-          <Input.Wrapper
-            label="Password"
-            required
-            labelProps={{ c: "#fff" }}
-            error={passwordError}
+            <Input.Wrapper
+              label="Email"
+              required
+              labelProps={{ c: "#fff" }}
+              error={emailError}
+            >
+              <Input
+                variant="filled"
+                value={email}
+                onChange={handleEmailChange}
+                radius="md"
+                size="md"
+                type="email"
+                w={{ base: 240, sm: 400, lg: 600 }}
+              />
+            </Input.Wrapper>
+            <Input.Wrapper
+              label="Password"
+              required
+              labelProps={{ c: "#fff" }}
+              error={passwordError}
+            >
+              <Input
+                variant="filled"
+                value={password}
+                onChange={handlePasswordChange}
+                type="password"
+                radius="md"
+                size="md"
+                w={{ base: 240, sm: 400, lg: 600 }}
+              />
+            </Input.Wrapper>
+            <Input.Wrapper
+              label="Password Confirmation"
+              required
+              labelProps={{ c: "#fff" }}
+              error={cPasswordError}
+            >
+              <Input
+                variant="filled"
+                value={cPassword}
+                onChange={handleCPasswordChange}
+                radius="md"
+                size="md"
+                w={{ base: 240, sm: 400, lg: 600 }}
+                type="password"
+              />
+            </Input.Wrapper>
+          </Box>
+          <Box
+            sx={() => ({
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            })}
+            mt={40}
           >
-            <Input
-              variant="filled"
-              value={password}
-              onChange={handlePasswordChange}
-              type="password"
-              radius="md"
-              size="md"
-              w={{ base: 240, sm: 400, lg: 600 }}
-            />
-          </Input.Wrapper>
-          <Input.Wrapper
-            label="Password Confirmation"
-            required
-            labelProps={{ c: "#fff" }}
-            error={cPasswordError}
-          >
-            <Input
-              variant="filled"
-              value={cPassword}
-              onChange={handleCPasswordChange}
-              radius="md"
-              size="md"
-              w={{ base: 240, sm: 400, lg: 600 }}
-              type="password"
-            />
-          </Input.Wrapper>
-        </Box>
-        <Box
-          sx={() => ({
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          })}
-          mt={40}
-        >
-          <Button
-            variant="gradient"
-            gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 35 }}
-            w={{ base: 100, sm: 150 }}
-            h={{ base: 40, sm: 50 }}
-            fz={{ base: 15, sm: 18 }}
-            ff="Montserrat"
-            type="submit"
-            loading={loaging}
-          >
-            Sign Up
-          </Button>
-        </Box>
-      </form>
+            <Button
+              variant="gradient"
+              gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 35 }}
+              w={{ base: 100, sm: 150 }}
+              h={{ base: 40, sm: 50 }}
+              fz={{ base: 15, sm: 18 }}
+              ff="Montserrat"
+              type="submit"
+              loading={loaging}
+            >
+              Sign Up
+            </Button>
+          </Box>
+        </form>
+        <Text c="#fff" ff="Montserrat">
+          Already have an account? <Link to="/login">Log in</Link>
+        </Text>
+      </Flex>
     </>
   );
 };
