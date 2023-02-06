@@ -14,7 +14,7 @@ const History: React.FC = () => {
     <>
       <Search />
       <Box
-        mt={20}
+        mt={40}
         ml={20}
         mr={20}
         display="flex"
@@ -34,6 +34,7 @@ const History: React.FC = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
+              alignItems: "center",
               flexDirection: "column",
               width: "100%",
               marginLeft: 10,

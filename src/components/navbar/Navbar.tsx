@@ -49,11 +49,9 @@ const Navbar: React.FC = () => {
               <Link to="/history">Search</Link>
             </p>
             <p>
-              <Link to="/history">??</Link>
-            </p>
-            <p>
               <Link to="/register">Sign up</Link>
             </p>
+            {currentUser && <p>{currentUser.email}</p>}
           </div>
         </div>
         {currentUser && currentUser.email ? (
@@ -91,11 +89,9 @@ const Navbar: React.FC = () => {
                   <Link to="/history">Search</Link>
                 </p>
                 <p>
-                  <Link to="/history">??</Link>
+                  <Link to="/register">Sign up</Link>
                 </p>
-                <p>
-                  <Link to="/history">Sign up</Link>
-                </p>
+                {currentUser && <p>{currentUser.email}</p>}
               </div>
               {currentUser && currentUser.email ? (
                 <div className="signup-menu">
@@ -105,7 +101,9 @@ const Navbar: React.FC = () => {
                 </div>
               ) : (
                 <div className="signup-menu">
-                  <button type="button">Log in</button>
+                  <button type="button">
+                    <Link to="/login">Login</Link>
+                  </button>
                 </div>
               )}
             </div>

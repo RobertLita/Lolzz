@@ -1,5 +1,5 @@
 import { Box, Input, Button, Alert, Text, Flex } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -13,6 +13,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const [loaging, setLoading] = useState(false);
   const { signup } = useAuth() || {};
+  const navigate = useNavigate();
 
   console.log(email, password, cPassword);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -22,16 +23,12 @@ const Register = () => {
     if (cPassword === "") setCPasswordError("Confirmation is required!");
     if (password && cPassword && password !== cPassword)
       return setError("Passwords do not match!");
-    if (
-      emailError !== "" &&
-      passwordError !== "" &&
-      cPasswordError !== "" &&
-      signup
-    )
+    if (email !== "" && password !== "" && cPassword !== "" && signup)
       try {
         setError("");
         setLoading(true);
         await signup(email, password);
+        navigate("/");
       } catch {
         setError("Failed to sign up!");
       }

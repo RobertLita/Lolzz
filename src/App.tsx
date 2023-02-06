@@ -6,6 +6,7 @@ import RootPage from "./pages/RootPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider } from "./contexts/AuthContext";
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/history",
-        element: <History />,
+        element: (
+          <PrivateRoute>
+            <History />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
